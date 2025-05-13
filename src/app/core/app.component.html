@@ -1,0 +1,19 @@
+ <div class="container mt-4">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" href="#" [class.active]="selectedTab === 'map'" (click)="selectedTab = 'map'">Harita</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" [class.active]="selectedTab === 'card'" (click)="selectedTab = 'card'">Cart </a>
+    </li>
+  </ul>
+
+  <div class="tab-content mt-3">
+    <div *ngIf="selectedTab === 'map'">
+      <app-map></app-map>
+    </div>
+    <div *ngIf="selectedTab === 'card'">
+    <app-card></app-card>
+    </div>
+  </div>
+</div>

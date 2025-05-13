@@ -1,0 +1,35 @@
+<p-card [header]="title" class="shadow-3 border-round-lg surface-card p-4">
+  <div *ngIf="loading" class="text-center text-secondary mb-3">
+    <i class="pi pi-spin pi-spinner" style="font-size: 1.5rem;"></i>
+    <p class="mt-2">Yükleniyor...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="text-danger text-center mb-3">
+    {{ errorMessage }}
+  </div>
+
+  <ng-container *ngIf="!loading">
+    <ng-container *ngIf="items?.length; else emptyState">
+      <ng-container *ngFor="let item of items">
+        <app-list-item
+          class="mb-2"
+          [item]="item"
+          (deleted)="onItemDeleted($event)">
+        </app-list-item>
+      </ng-container>
+    </ng-container>
+
+    <ng-template #emptyState>
+      <div class="text-center text-muted p-3 border-dashed border-2 border-300 border-round">
+        Hiç kayıt bulunamadı.
+      </div>
+    </ng-template>
+  </ng-container>
+
+  <div class="text-end mt-3">
+    <button class="p-button p-button-rounded p-button-outlined p-button-primary" (click)="addNewItem()">
+      <i class="pi pi-plus mr-2"></i>
+      Yeni Ekle
+    </button>
+  </div>
+</p-card>

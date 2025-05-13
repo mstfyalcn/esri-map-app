@@ -1,0 +1,30 @@
+<div class="p-grid">
+  <!-- harita gösterimi -->
+  <div class="p-col-12" style="height: 500px">
+    <div id="viewDiv" style="height: 100%"></div>
+  </div>
+  <!-- verileri gösterdiğimiz table'ımız -->
+  <div class="p-col-12">
+    <p-table [value]="tableData" [paginator]="true" [rows]="10">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Tree Name</th>
+          <th>Scientific Name</th>
+          <th>Diameter</th>
+        </tr>
+      </ng-template>
+      <!-- selected statüsüne göre event bind ettik -->
+      <ng-template pTemplate="body" let-row>
+        <tr
+          (click)="onRowSelect(row)"
+          [class.selected]="row.Tree_ID === selectedFeatureId"
+          style="cursor: pointer"
+        >
+          <td>{{ row.Cmn_Name }}</td>
+          <td>{{ row.Sci_Name }}</td>
+          <td>{{ row.DBH1 }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
